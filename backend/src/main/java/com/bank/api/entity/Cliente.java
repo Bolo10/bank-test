@@ -15,7 +15,7 @@ public class Cliente extends Persona {
     @Column(unique = true)
     private String clientId;
 
-    @NotBlank
+    //@NotBlank
     private String password;
 
     private Boolean estado;
