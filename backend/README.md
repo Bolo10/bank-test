@@ -1,0 +1,1 @@
+Hemos usado Spring Boot Initializer para tener el proyecto base
