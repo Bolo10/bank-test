@@ -1,11 +1,8 @@
 spring:
-  application:
-    name: bank-api
   datasource:
-    url: jdbc:postgresql://app_db:5433/bankdb
+    url: jdbc:postgresql://app_db:5432/bankdb
     username: bankuser
     password: bankpass
   jpa:
     hibernate:
       ddl-auto: update
-      
