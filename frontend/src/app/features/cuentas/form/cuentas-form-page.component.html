@@ -1,0 +1,92 @@
+<div class="page">
+  <h1 class="title">{{ isEdit ? "Editar Cuenta" : "Nueva Cuenta" }}</h1>
+
+  <div class="card">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="grid">
+        <div class="field">
+          <label>Número de cuenta</label>
+          <input
+            name="numeroCuenta"
+            [(ngModel)]="model.numeroCuenta"
+            required
+            minlength="5"
+            maxlength="10"
+            pattern="^[0-9]+$"
+            #num="ngModel"
+          />
+          <small
+            class="error"
+            *ngIf="num.invalid && (num.touched || f.submitted)"
+          >
+            <span *ngIf="num.errors?.['required']"
+              >El número de cuenta es obligatorio.</span
+            >
+            <span *ngIf="num.errors?.['minlength']">Mínimo 5 dígitos.</span>
+            <span *ngIf="num.errors?.['maxlength']">Máximo 10 dígitos.</span>
+            <span *ngIf="num.errors?.['pattern']">Solo números y sin espacios.</span>
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Tipo de cuenta</label>
+          <select name="tipoCuenta" [(ngModel)]="model.tipoCuenta" required>
+            <option value="" disabled>Seleccione</option>
+            <option value="CORRIENTE">CORRIENTE</option>
+            <option value="AHORROS">AHORROS</option>
+          </select>
+          <small class="error" *ngIf="f.submitted && !model.tipoCuenta"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Saldo inicial</label>
+          <input
+            name="saldoInicial"
+            type="number"
+            [(ngModel)]="model.saldoInicial"
+            required
+          />
+          <small
+            class="error"
+            *ngIf="
+              f.submitted &&
+              (model.saldoInicial === null || model.saldoInicial === undefined)
+            "
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Cliente</label>
+          <select name="clienteId" [(ngModel)]="model.clienteId" required>
+            <option [ngValue]="null" disabled>Seleccione</option>
+            <option *ngFor="let c of clientes" [ngValue]="c.id">
+              {{ c.nombre }} ({{ c.clientId }})
+            </option>
+          </select>
+          <small class="error" *ngIf="f.submitted && !model.clienteId"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field checkbox">
+          <label>
+            <input type="checkbox" name="estado" [(ngModel)]="model.estado" />
+            Cuenta activa
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" routerLink="/cuentas">Cancelar</a>
+        <button class="btn-primary" type="submit" [disabled]="saving">
+          {{ saving ? "Guardando..." : isEdit ? "Guardar cambios" : "Crear" }}
+        </button>
+      </div>
+
+      <p class="error banner" *ngIf="error">{{ error }}</p>
+    </form>
+  </div>
+</div>

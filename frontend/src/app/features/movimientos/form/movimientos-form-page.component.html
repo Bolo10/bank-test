@@ -1,0 +1,91 @@
+<div class="page">
+  <h1 class="title">Nuevo Movimiento</h1>
+
+  <div class="card">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="grid">
+        <div class="field">
+          <label>Cuenta</label>
+          <select name="cuentaId" [(ngModel)]="model.cuentaId" required>
+            <option [ngValue]="null" disabled>Seleccione</option>
+            <option *ngFor="let c of cuentas" [ngValue]="c.id">
+              {{ c.numeroCuenta }} - {{ c.cliente.nombre }} ({{
+                c.cliente.clientId
+              }})
+            </option>
+          </select>
+          <small class="error" *ngIf="f.submitted && !model.cuentaId"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Tipo</label>
+          <select
+            name="tipoMovimiento"
+            [(ngModel)]="model.tipoMovimiento"
+            required
+          >
+            <option value="" disabled>Seleccione</option>
+            <option value="CREDITO">CREDITO</option>
+            <option value="DEBITO">DEBITO</option>
+          </select>
+          <small class="error" *ngIf="f.submitted && !model.tipoMovimiento"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Valor</label>
+          <input
+            name="valor"
+            type="number"
+            [(ngModel)]="model.valor"
+            required
+            min="0.01"
+            step="0.01"
+          />
+          <small
+            class="error"
+            *ngIf="
+              f.submitted && (model.valor === null || model.valor === undefined)
+            "
+            >Requerido</small
+          >
+          <small class="hint"
+            >* El sistema aplicará signo: crédito (+), débito (-)</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Fecha</label>
+          <input name="fecha" type="date" [(ngModel)]="model.fecha" disabled />
+          <small class="hint">Fecha operativa HOY.</small>
+        </div>
+
+        <div class="field preview" *ngIf="model.tipoMovimiento && model.valor">
+          <label>Preview valor enviado</label>
+          <div class="pill">{{ signedValor() }}</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" routerLink="/movimientos">Cancelar</a>
+        <button class="btn-primary" type="submit" [disabled]="saving">
+          {{ saving ? "Guardando..." : "Crear" }}
+        </button>
+      </div>
+
+      <p class="error banner" *ngIf="error">{{ error }}</p>
+      <div class="note">
+        <h3>Nota</h3>
+        <p>
+          Tome la decisión de deshabilitar la selección de la fecha para
+          mantener la consistencia del saldo, permitir (crear movimientos con
+          fechas pasadas) puede requerir recalcular saldos de transacciones
+          posteriores. El backend maneja la fecha actual automáticamente.
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

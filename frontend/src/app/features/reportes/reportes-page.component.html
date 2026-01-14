@@ -1,0 +1,80 @@
+<div class="page">
+  <h1 class="title">Reportes</h1>
+
+  <div class="card">
+    <form #f="ngForm" (ngSubmit)="buscar(f)" class="filters">
+      <div class="field">
+        <label>Cliente</label>
+        <select name="clienteId" [(ngModel)]="form.clienteId" required>
+          <option [ngValue]="null" disabled>Seleccione</option>
+          <option *ngFor="let c of clientes" [ngValue]="c.id">
+            {{ c.nombre }} ({{ c.clientId }})
+          </option>
+        </select>
+      </div>
+
+     <app-date-range
+        (valueChange)="onDateRangeChange($event)"
+      >
+      </app-date-range>
+
+      <div class="actions">
+        <button class="btn-primary" type="submit" [disabled]="loading">
+          {{ loading ? "Consultando..." : "Consultar" }}
+        </button>
+        <button
+          class="btn"
+          type="button"
+          (click)="downloadPdf()"
+          [disabled]="!pdfBase64"
+        >
+          Descargar PDF
+        </button>
+      </div>
+    </form>
+
+    <p class="error banner" *ngIf="error">{{ error }}</p>
+  </div>
+
+  <div class="card" *ngIf="reporte">
+    <h2 class="subtitle">Estado de cuenta</h2>
+
+    <h2 class="subtitle">Cuentas</h2>
+    <table class="table" *ngIf="reporte?.cuentas?.length">
+      <thead>
+        <tr>
+          <th># Cuenta</th>
+          <th>Tipo</th>
+          <th>Saldo actual</th>
+          <th>Total Débitos</th>
+          <th>Total Créditos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of reporte.cuentas">
+          <td>{{ c.numeroCuenta }}</td>
+          <td>{{ c.tipoCuenta }}</td>
+          <td>${{ c.saldoActual | number : "1.2-2" }}</td>
+          <td>${{ c.totalDebitos | number : "1.2-2" }}</td>
+          <td>${{ c.totalCreditos | number : "1.2-2" }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subtitle">Resumen Cliente</h2>
+    <div class="summary">
+      <div class="box">
+        <div class="k">Total Créditos</div>
+        <div class="v">${{ totals.creditos | number : "1.2-2" }}</div>
+      </div>
+      <div class="box">
+        <div class="k">Total Débitos</div>
+        <div class="v">${{ totals.debitos | number : "1.2-2" }}</div>
+      </div>
+      <div class="box">
+        <div class="k">Saldo final</div>
+        <div class="v">${{ totals.saldoFinal | number : "1.2-2" }}</div>
+      </div>
+    </div>
+  </div>
+</div>

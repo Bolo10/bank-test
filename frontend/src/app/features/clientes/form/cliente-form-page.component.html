@@ -1,0 +1,148 @@
+<div class="page">
+  <h1 class="title">{{ isEdit ? "Editar Cliente" : "Nuevo Cliente" }}</h1>
+
+  <div class="card">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="grid">
+        <div class="field">
+          <label>Nombre</label>
+          <input
+            name="nombre"
+            [(ngModel)]="model.nombre"
+            required
+            minlength="3"
+          />
+          <small class="error" *ngIf="f.submitted && !model.nombre"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Género</label>
+          <select name="genero" [(ngModel)]="model.genero" required>
+            <option value="" disabled>Seleccione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+          <small class="error" *ngIf="f.submitted && !model.genero"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Edad</label>
+          <input
+            name="edad"
+            type="number"
+            [(ngModel)]="model.edad"
+            required
+            min="0"
+            max="100"
+            #edad="ngModel"
+          />
+          <small
+            class="error"
+            *ngIf="edad.invalid && (edad.touched || f.submitted)"
+          >
+            <span *ngIf="edad.errors?.['required']"
+              >La edad es obligatoria.</span
+            >
+            <span *ngIf="edad.errors?.['min']"
+              >La edad no puede ser negativa.</span
+            >
+            <span *ngIf="edad.errors?.['max']"
+              >La edad no puede ser mayor a 100.</span
+            >
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Identificación</label>
+          <input
+            name="identificacion"
+            [(ngModel)]="model.identificacion"
+            required
+            minlength="5"
+            maxlength="10"
+            pattern="^[0-9A-Za-z]+$"
+            #ident="ngModel"
+          />
+          <small
+            class="error"
+            *ngIf="ident.invalid && (ident.touched || f.submitted)"
+          >
+            <span *ngIf="ident.errors?.['required']"
+              >La identificación es obligatoria.</span
+            >
+            <span *ngIf="ident.errors?.['minlength']"
+              >Mínimo 5 caracteres.</span
+            >
+            <span *ngIf="ident.errors?.['maxlength']"
+              >Máximo 10 caracteres.</span
+            >
+            <span *ngIf="ident.errors?.['pattern']"
+              >Solo letras y números (sin espacios).</span
+            >
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Dirección</label>
+          <input name="direccion" [(ngModel)]="model.direccion" required />
+          <small class="error" *ngIf="f.submitted && !model.direccion"
+            >Requerido</small
+          >
+        </div>
+
+        <div class="field">
+          <label>Teléfono</label>
+          <input
+            name="telefono"
+            [(ngModel)]="model.telefono"
+            required
+            minlength="7"
+          />
+          <small class="error" *ngIf="f.submitted && !model.telefono"
+            >Requerido</small
+          >
+        </div>
+
+        <!-- <div class="field">
+          <label>Contraseña</label>
+          <input
+            name="password"
+            type="password"
+            [(ngModel)]="model.password"
+            [required]="!isEdit"
+            minlength="4"
+          />
+          <small class="hint" *ngIf="isEdit"
+            >Déjalo vacío si no deseas cambiarla</small
+          >
+          <small
+            class="error"
+            *ngIf="f.submitted && !isEdit && !model.password"
+            >Requerido</small
+          >
+        </div> -->
+
+        <div class="field checkbox">
+          <label>
+            <input type="checkbox" name="estado" [(ngModel)]="model.estado" />
+            Estado Activo
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" routerLink="/clientes">Cancelar</a>
+        <button class="btn-primary" type="submit" [disabled]="saving">
+          {{ saving ? "Guardando..." : isEdit ? "Guardar cambios" : "Crear" }}
+        </button>
+      </div>
+
+      <p class="error banner" *ngIf="error">{{ error }}</p>
+      <p class="ok banner" *ngIf="ok">{{ ok }}</p>
+    </form>
+  </div>
+</div>

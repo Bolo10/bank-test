@@ -1,0 +1,59 @@
+<div class="page">
+  <h1 class="title">Movimientos</h1>
+
+  <div class="toolbar">
+    <div class="filters">
+      <select class="input" [(ngModel)]="filters.clienteId">
+        <option [ngValue]="null">Cliente (opcional)</option>
+        <option *ngFor="let c of clientes" [ngValue]="c.id">
+          {{ c.nombre }} ({{ c.clientId }})
+        </option>
+      </select>
+
+      <app-date-range
+        (valueChange)="onDateRangeChange($event)"
+      >
+      </app-date-range>
+      <button class="btn-primary" (click)="buscar()">Buscar</button>
+      <button class="btn" routerLink="/movimientos/nuevo">Nuevo</button>
+    </div>
+
+    <input
+      class="search"
+      placeholder="Buscar en tabla"
+      [(ngModel)]="q"
+      (input)="applyFilter()"
+    />
+  </div>
+
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cuenta</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Saldo</th>
+          <th>Cliente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of filtered">
+          <td>{{ m.fecha }}</td>
+          <td>{{ m.cuenta.numeroCuenta }}</td>
+          <td>{{ m.tipoMovimiento }}</td>
+          <td>{{ m.valor | number : "1.2-2" }}</td>
+          <td>{{ m.saldo | number : "1.2-2" }}</td>
+          <td>
+            {{ m.cuenta.cliente.nombre }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted" *ngIf="!loading && filtered.length === 0">Sin datos</p>
+    <p class="muted" *ngIf="loading">Cargando...</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+</div>

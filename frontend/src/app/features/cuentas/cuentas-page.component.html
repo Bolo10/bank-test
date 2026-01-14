@@ -1,0 +1,46 @@
+<div class="page">
+      <h1 class="title">Cuentas</h1>
+
+      <div class="toolbar">
+        <input
+          class="search"
+          placeholder="Buscar"
+          [(ngModel)]="q"
+          (input)="applyFilter()"
+        />
+        <button class="btn-primary" routerLink="/cuentas/nuevo">Nuevo</button>
+      </div>
+
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th># Cuenta</th>
+              <th>Tipo</th>
+              <th>Saldo inicial</th>
+              <th>Cliente</th>
+              <th>Estado</th>
+              <th style="width:120px;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of filtered">
+              <td>{{ c.numeroCuenta }}</td>
+              <td>{{ c.tipoCuenta }}</td>
+              <td>{{ c.saldoInicial | number : '1.2-2' }}</td>
+              <td>{{ c.cliente.nombre }} ({{ c.cliente.clientId }})</td>
+              <td>{{ c.estado ? 'Activa' : 'Inactiva' }}</td>
+              <td>
+                <a class="link" [routerLink]="['/cuentas', c.id, 'editar']"
+                  >Editar</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="muted" *ngIf="!loading && filtered.length === 0">Sin datos</p>
+        <p class="muted" *ngIf="loading">Cargando...</p>
+        <p class="error" *ngIf="error">{{ error }}</p>
+      </div>
+    </div>

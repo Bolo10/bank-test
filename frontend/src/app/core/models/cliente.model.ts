@@ -10,7 +10,7 @@ export interface Cliente {
   estado: boolean;
 }
 
-export interface ClienteCreate {
+export interface ClienteCreateDto {
   nombre: string;
   genero: string;
   edad: number;
@@ -21,7 +21,7 @@ export interface ClienteCreate {
   estado: boolean;
 }
 
-export interface ClienteUpdate {
+export interface ClienteUpdateDto {
   nombre?: string;
   genero?: string;
   edad?: number;

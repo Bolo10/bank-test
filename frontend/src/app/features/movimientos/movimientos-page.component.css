@@ -12,7 +12,7 @@
   margin-bottom: 16px;
 }
 .search {
-  width: 260px;
+  width: 340px;
   padding: 10px 12px;
   border: 1px solid #cfcfcf;
   border-radius: 4px;
@@ -51,4 +51,23 @@ thead th {
 .error {
   color: #b00020;
   margin-top: 12px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.input {
+  padding: 10px 12px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+.btn {
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  padding: 10px 18px;
+  border-radius: 4px;
+  cursor: pointer;
 }
