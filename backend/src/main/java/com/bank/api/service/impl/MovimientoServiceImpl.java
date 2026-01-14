@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -48,8 +49,8 @@ public class MovimientoServiceImpl implements MovimientoService {
 
         cuenta.setSaldoInicial(nuevoSaldo);
         cuentaRepository.save(cuenta);
-
-        movimiento.setFecha(LocalDateTime.now());
+        System.out.println(LocalDateTime.now());
+        movimiento.setFecha(LocalDate.now());
         movimiento.setSaldo(nuevoSaldo);
         movimiento.setCuenta(cuenta);
 
@@ -58,9 +59,9 @@ public class MovimientoServiceImpl implements MovimientoService {
 
     private void validarCupoDiario(Long cuentaId, BigDecimal valor) {
         LocalDate hoy = LocalDate.now();
-        LocalDateTime inicio = hoy.atStartOfDay();
-        LocalDateTime fin = hoy.atTime(23, 59, 59);
-
+        LocalDate inicio = hoy;
+        LocalDate fin = hoy;
+        
         BigDecimal totalHoy = movimientoRepository
                 .sumValorByCuentaAndTipoAndRango(cuentaId, TipoMovimiento.DEBITO, inicio, fin)
                 .abs(); // porque son negativos
@@ -84,7 +85,7 @@ public class MovimientoServiceImpl implements MovimientoService {
     }
 
     @Override
-    public List<Movimiento> listByClienteAndRango(Long clienteId, LocalDateTime inicio, LocalDateTime fin) {
+    public List<Movimiento> listByClienteAndRango(Long clienteId, LocalDate inicio, LocalDate fin) {
         return movimientoRepository.findByClienteAndRangoFechas(clienteId, inicio, fin);
     }
 

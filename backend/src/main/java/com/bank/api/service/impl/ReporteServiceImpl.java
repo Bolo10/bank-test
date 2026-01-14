@@ -40,8 +40,8 @@ public class ReporteServiceImpl implements ReporteService {
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new NotFoundException("Cliente no encontrado"));
 
-        LocalDateTime inicio = fechaInicio.atStartOfDay();
-        LocalDateTime fin = fechaFin.atTime(23, 59, 59);
+        LocalDate inicio = fechaInicio;
+        LocalDate fin = fechaFin;
 
         List<Cuenta> cuentas = cuentaRepository.findByClienteId(clienteId);
         List<Movimiento> movimientos = movimientoRepository.findByClienteAndRangoFechas(clienteId, inicio, fin);

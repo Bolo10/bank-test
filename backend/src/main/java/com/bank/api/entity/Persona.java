@@ -24,7 +24,8 @@ public abstract class Persona {
     @NotBlank
     protected String genero;
 
-    @Min(0)
+    @Min(value = 0, message = "La edad no puede ser menor a 0")
+    @Max(value = 100, message = "La edad no puede ser mayor a 100")
     protected Integer edad;
 
     @NotBlank

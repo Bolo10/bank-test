@@ -18,6 +18,7 @@ public class Cuenta {
     @Column(name = "cuenta_id")
     private Long id;
     //
+    @Column(unique = true)
     private String numeroCuenta;
 
     @Enumerated(EnumType.STRING)

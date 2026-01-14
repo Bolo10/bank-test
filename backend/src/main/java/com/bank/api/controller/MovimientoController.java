@@ -43,8 +43,8 @@ public class MovimientoController {
             @RequestParam String fechaFin
     ) {
         System.out.println("entra");
-        LocalDateTime inicio = LocalDate.parse(fechaInicio).atStartOfDay();
-        LocalDateTime fin = LocalDate.parse(fechaFin).atTime(23, 59, 59);
+        LocalDate inicio = LocalDate.parse(fechaInicio);
+        LocalDate fin = LocalDate.parse(fechaFin);
         System.out.println("inicio: " + inicio + ", fin: " + fin);
         return service.listByClienteAndRango(clienteId, inicio, fin);
     }

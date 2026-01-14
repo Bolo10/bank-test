@@ -12,7 +12,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByClientId(String clientId);
 
     Optional<Cliente> findByIdentificacion(String identificacion);
-
+    
+    List<Cliente> findByEstadoTrue();
     // Búsqueda rápida (nombre / identificación / clientId)
     @Query("""
            SELECT c

@@ -46,4 +46,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiError("Error interno", "INTERNAL_ERROR", Instant.now(), req.getRequestURI()));
     }
+
+    @ExceptionHandler(ClienteExistenteException.class)
+    public ResponseEntity<ApiError> handleClienteExistente(ClienteExistenteException ex, HttpServletRequest req) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiError(ex.getMessage(), "CLIENTE_EXISTENTE", Instant.now(), req.getRequestURI()));
+    }
+
+    @ExceptionHandler(CuentaExistenteException.class)
+    public ResponseEntity<ApiError> handleCuentaExistente(CuentaExistenteException ex, HttpServletRequest req) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiError(ex.getMessage(), "CUENTA_EXISTENTE", Instant.now(), req.getRequestURI()));
+    }
 }

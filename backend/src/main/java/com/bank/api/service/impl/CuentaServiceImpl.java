@@ -1,6 +1,7 @@
 package com.bank.api.service.impl;
 
 import com.bank.api.entity.Cuenta;
+import com.bank.api.exception.CuentaExistenteException;
 import com.bank.api.exception.NotFoundException;
 import com.bank.api.repository.CuentaRepository;
 import com.bank.api.service.CuentaService;
@@ -17,6 +18,10 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Cuenta create(Cuenta cuenta) {
+        repository.findByNumeroCuenta(cuenta.getNumeroCuenta())
+        .ifPresent(c -> {
+            throw new CuentaExistenteException();
+        });
         return repository.save(cuenta);
     }
 
@@ -30,7 +35,7 @@ public class CuentaServiceImpl implements CuentaService {
     @Override
     public List<Cuenta> list(Long clienteId) {
         if (clienteId == null) {
-            return repository.findAll();
+            return repository.findByEstadoTrue();
         }
         return repository.findByClienteId(clienteId);
     }
@@ -44,12 +49,12 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Cuenta patch(Long id, Cuenta partial) {
-        Cuenta existing = getById(id);
+        Cuenta cuenta = getById(id);
 
-        if (partial.getEstado() != null) existing.setEstado(partial.getEstado());
-        if (partial.getTipoCuenta() != null) existing.setTipoCuenta(partial.getTipoCuenta());
+        if (partial.getEstado() != null) cuenta.setEstado(partial.getEstado());
+        if (partial.getTipoCuenta() != null) cuenta.setTipoCuenta(partial.getTipoCuenta());
 
-        return repository.save(existing);
+        return repository.save(cuenta);
     }
 
     @Override
@@ -57,6 +62,8 @@ public class CuentaServiceImpl implements CuentaService {
         if (!repository.existsById(id)) {
             throw new NotFoundException("Cuenta no encontrada");
         }
-        repository.deleteById(id);
+        Cuenta cuenta = getById(id);
+        cuenta.setEstado(false);
+        repository.save(cuenta);
     }
 }

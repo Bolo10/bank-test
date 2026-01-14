@@ -1,5 +1,6 @@
 package com.bank.api.repository;
 
+import com.bank.api.entity.Cliente;
 import com.bank.api.entity.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,4 +12,6 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     Optional<Cuenta> findByNumeroCuenta(String numeroCuenta);
 
     List<Cuenta> findByClienteId(Long clienteId);
+
+    List<Cuenta> findByEstadoTrue();
 }
