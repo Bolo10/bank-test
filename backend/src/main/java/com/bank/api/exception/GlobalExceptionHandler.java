@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneric(Exception ex, HttpServletRequest req) {
         //PRINT PARA VERIFICAR que entra al Excemption Handler
-        System.out.println("Entra al exception: ");
+        System.out.println("Entra al exception: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiError("Error interno", "INTERNAL_ERROR", Instant.now(), req.getRequestURI()));
     }

@@ -1,0 +1,46 @@
+<div class="page">
+  <h1 class="title">Clientes</h1>
+
+  <div class="toolbar">
+    <input
+      class="search"
+      placeholder="Buscar"
+      [(ngModel)]="q"
+      (input)="onSearch()"
+    />
+    <button class="btn-primary" routerLink="/clientes/nuevo">Nuevo</button>
+  </div>
+
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ClienteId</th>
+          <th>Nombre</th>
+          <th>Identificación</th>
+          <th>Teléfono</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes">
+          <td>{{ c.clientId }}</td>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.identificacion }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.estado ? "Activo" : "Inactivo" }}</td>
+          <td>
+            <a class="link" [routerLink]="['/clientes', c.id, 'editar']"
+              >Editar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted" *ngIf="clientes.length === 0 && !loading">Sin datos</p>
+    <p class="muted" *ngIf="loading">Cargando...</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+</div>

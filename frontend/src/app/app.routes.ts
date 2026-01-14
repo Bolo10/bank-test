@@ -5,7 +5,17 @@ export const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-    children: [{ path: '', pathMatch: 'full', redirectTo: 'clientes' }],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'clientes' },
+      {
+        path: 'clientes',
+        loadChildren: () =>
+          import('./features/clientes/cliente.routes').then(
+            (m) => m.CLIENTES_ROUTES
+          ),
+      },
+    ],
   },
+
   { path: '**', redirectTo: '' },
 ];

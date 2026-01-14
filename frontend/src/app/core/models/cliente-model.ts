@@ -1,0 +1,33 @@
+export interface Cliente {
+  id: number;
+  clientId: string;
+  nombre: string;
+  genero: string;
+  edad: number;
+  identificacion: string;
+  direccion: string;
+  telefono: string;
+  estado: boolean;
+}
+
+export interface ClienteCreate {
+  nombre: string;
+  genero: string;
+  edad: number;
+  identificacion: string;
+  direccion: string;
+  telefono: string;
+  //password: string;
+  estado: boolean;
+}
+
+export interface ClienteUpdate {
+  nombre?: string;
+  genero?: string;
+  edad?: number;
+  identificacion?: string;
+  direccion?: string;
+  telefono?: string;
+  //password?: string;
+  estado?: boolean;
+}
