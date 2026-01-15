@@ -9,6 +9,6 @@ public interface ClienteService {
     Cliente getById(Long id);
     List<Cliente> list(String q);
     Cliente update(Long id, Cliente cliente);     // PUT
-    Cliente patch(Long id, Cliente partial);      // PATCH (simple)
+    Cliente patch(Long id, Cliente partial);
     void delete(Long id);
 }

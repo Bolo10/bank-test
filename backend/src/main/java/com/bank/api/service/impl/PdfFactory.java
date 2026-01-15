@@ -55,7 +55,7 @@ final class PdfFactory {
             doc.save(baos);
             return baos.toByteArray();
         } catch (Exception e) {
-            // si falla el PDF, mejor devolver algo controlado (para la prueba puede quedar así)
+            // si falla el PDF
             return new byte[0];
         }
     }

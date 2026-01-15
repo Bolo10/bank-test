@@ -1,7 +1,7 @@
 package com.bank.api.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.*;
 
 @Entity
@@ -15,7 +15,7 @@ public class Cliente extends Persona {
     @Column(unique = true)
     private String clientId;
 
-    //@NotBlank
+    
     private String password;
 
     private Boolean estado;

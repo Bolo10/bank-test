@@ -19,7 +19,7 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@Valid @RequestBody Cliente cliente) {
-        System.out.println("creating cliente: " + cliente);
+        
         return service.create(cliente);
     }
 
@@ -30,7 +30,7 @@ public class ClienteController {
 
     @GetMapping
     public List<Cliente> list(@RequestParam(name = "q", required = false) String q) {
-        System.out.println("entra");
+        
         return service.list(q);
     }
 
@@ -47,7 +47,7 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        System.out.println("recordar que hay que hacer eliminado logico");
+        
         service.delete(id);
     }
 }

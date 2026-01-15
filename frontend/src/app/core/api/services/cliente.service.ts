@@ -10,7 +10,6 @@ export class ClienteService {
   constructor(private readonly http: HttpClient) {}
 
   list(q?: string): Observable<Cliente[]> {
-    console.log(q);
     let params = new HttpParams();
 
     if (q && q.trim().length > 0) params = params.set('q', q.trim());
@@ -19,28 +18,28 @@ export class ClienteService {
   }
 
   getById(id: number): Observable<Cliente> {
-    console.log(id);
+
     return this.http.get<Cliente>(`${this.baseUrl}/${id}`);
   }
 
   create(payload: ClienteCreateDto): Observable<Cliente> {
-    console.log(payload);
+
 
     return this.http.post<Cliente>(this.baseUrl, payload);
   }
 
   update(id: number, payload: ClienteUpdateDto): Observable<Cliente> {
-    console.log(payload);
+
     return this.http.patch<Cliente>(`${this.baseUrl}/${id}`, payload);
   }
 
   patch(id: number, payload: ClienteUpdateDto): Observable<Cliente> {
-    console.log(payload);
+
     return this.http.patch<Cliente>(`${this.baseUrl}/${id}`, payload);
   }
 
   delete(id: number): Observable<void> {
-    console.log(id);
+
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

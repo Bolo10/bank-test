@@ -1,6 +1,6 @@
 package com.bank.api.repository;
 
-import com.bank.api.entity.Cliente;
+
 import com.bank.api.entity.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 

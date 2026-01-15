@@ -14,7 +14,7 @@ export class MovimientoService {
     desde?: string;
     hasta?: string;
   }): Observable<Movimiento[]> {
-    console.log(filters);
+
     let params = new HttpParams();
 
     if (filters?.clienteId)

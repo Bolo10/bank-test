@@ -134,7 +134,7 @@ export class ReportesPageComponent implements OnInit {
     valid: boolean;
     message: string;
   }) {
-    console.log(v.message);
+    
     let desde = new Date(v.desde!).toISOString().slice(0, 10);
     let hasta = new Date(v.hasta!).toISOString().slice(0, 10);
 

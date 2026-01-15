@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -51,12 +51,10 @@ class CuentaControllerTest {
         when(cuentaService.list(ArgumentMatchers.any()))
                 .thenReturn(List.of(c1, c2));
 
-        // --- Act ---
         mockMvc.perform(get("/cuentas")
                         .param("q", "") 
                         .accept(MediaType.APPLICATION_JSON))
 
-                // --- Assert ---
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.length()").value(2))

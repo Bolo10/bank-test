@@ -32,8 +32,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/bankdb
       SPRING_DATASOURCE_USERNAME: bankuser
       SPRING_DATASOURCE_PASSWORD: bankpass
-      # Opcional: para que Hibernate cree tablas automáticamente (mejor controlarlo por profile)
-      # SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - '8080:8080'
     depends_on:

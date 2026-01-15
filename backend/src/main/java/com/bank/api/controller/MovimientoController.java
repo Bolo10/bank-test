@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @RestController
@@ -42,10 +42,10 @@ public class MovimientoController {
             @RequestParam String fechaInicio,
             @RequestParam String fechaFin
     ) {
-        System.out.println("entra");
+        
         LocalDate inicio = LocalDate.parse(fechaInicio);
         LocalDate fin = LocalDate.parse(fechaFin);
-        System.out.println("inicio: " + inicio + ", fin: " + fin);
+        
         return service.listByClienteAndRango(clienteId, inicio, fin);
     }
 

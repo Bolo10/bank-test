@@ -111,7 +111,7 @@ export class MovimientosPageComponent implements OnInit {
     valid: boolean;
     message: string;
   }) {
-    console.log(v.message);
+
 
     this.filters.fechaInicio = v.desde;
     this.filters.fechaFin = v.hasta;

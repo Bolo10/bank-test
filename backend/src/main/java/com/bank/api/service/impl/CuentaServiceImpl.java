@@ -27,7 +27,7 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Cuenta getById(Long id) {
-        System.out.println("entraaaaaaaa");
+        
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Cuenta no encontrada"));
     }

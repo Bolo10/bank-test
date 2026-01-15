@@ -45,19 +45,13 @@ public class ClienteServiceImpl implements ClienteService {
         
 
         Cliente saved = repository.save(cliente);
-        System.out.println("cliente llego");
+        
         if (saved.getClientId() == null || saved.getClientId().isBlank()) {
             saved.setClientId(String.format("CL-%06d", saved.getId()));
             saved = repository.save(saved);
         }
         return saved;
     }
-
-    //@Override
-    //public Cliente create(Cliente cliente) {
-    //    Cliente saved = repository.save(cliente);
-    //    return saved;
-    //}
 
     @Override
     public Cliente getById(Long id) {
@@ -76,8 +70,8 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente update(Long id, Cliente cliente) {
         Cliente existing = getById(id);
-        System.out.println("Entra en el update");
-        cliente.setId(existing.getId()); // asegura que es el mismo
+        
+        cliente.setId(existing.getId());
         return repository.save(cliente);
     }
 
@@ -91,9 +85,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (partial.getEstado() != null) existing.setEstado(partial.getEstado());
         if (partial.getClientId() == null) existing.setClientId(existing.getClientId());
         if (partial.getPassword() == null) existing.setPassword(existing.getPassword());
-        //Estos no se deben poder cambiar
-        //if (partial.getPassword() != null) existing.setPassword(partial.getPassword());
-        //if (partial.getIdentificacion() != null) existing.setIdentificacion(partial.getIdentificacion());
+
 
         return repository.save(existing);
     }

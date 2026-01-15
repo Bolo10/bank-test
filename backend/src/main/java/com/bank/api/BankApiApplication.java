@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -22,12 +22,5 @@ public class BankApiApplication {
 		System.out.println("Hola mundo");
 		return "Bank API is running in Docker";
 	}
-	//Paraprobar post
-
-	//@PostMapping("/hello")
-	//public String helloPost() {
-	//	System.out.println("Hola mundo");
-    //    return "Bank API is running in Docker";
-    //}
 	
 }

@@ -17,7 +17,7 @@ export interface ClienteCreateDto {
   identificacion: string;
   direccion: string;
   telefono: string;
-  //password: string;
+
   estado: boolean;
 }
 
@@ -28,6 +28,6 @@ export interface ClienteUpdateDto {
   identificacion?: string;
   direccion?: string;
   telefono?: string;
-  //password?: string;
+
   estado?: boolean;
 }

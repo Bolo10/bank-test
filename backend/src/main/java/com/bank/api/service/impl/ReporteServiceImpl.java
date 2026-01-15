@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.*;
 import java.util.Base64;
 
@@ -30,11 +30,7 @@ public class ReporteServiceImpl implements ReporteService {
 
     @Override
     public ReporteResponse generar(Long clienteId, LocalDate fechaInicio, LocalDate fechaFin) {
-        System.out.println("clienteId: " + clienteId + ", fechaInicio: " + fechaInicio + ", fechaFin: " + fechaFin);
-
-
-        //Cliente cliente = clienteRepository.findById(clienteId)
-        //   
+        
 
 
         Cliente cliente = clienteRepository.findById(clienteId)
@@ -60,7 +56,7 @@ public class ReporteServiceImpl implements ReporteService {
                     .map(Movimiento::getValor)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            // si tus débitos son negativos, totalDebitos será negativo. Lo pasamos a positivo:
+            // si los débitos son negativos, totalDebitos será negativo. Lo pasamos a positivo:
             BigDecimal totalDebitos = movs.stream()
                     .filter(m -> m.getTipoMovimiento() == TipoMovimiento.RETIRO)
                     .map(Movimiento::getValor)

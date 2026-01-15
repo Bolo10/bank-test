@@ -30,7 +30,7 @@ public class CuentaController {
     // /cuentas?clienteId=1
     @GetMapping
     public List<Cuenta> list(@RequestParam(name = "clienteId", required = false) Long clienteId) {
-        System.out.println("entra");
+        
         return service.list(clienteId);
     }
 
@@ -47,7 +47,7 @@ public class CuentaController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        System.out.println("recordar que hay que hacer eliminado logico");
+        
         service.delete(id);
     }
 }

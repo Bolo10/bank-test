@@ -21,7 +21,6 @@ public class ReporteController {
             @RequestParam String fechaFin,
             @RequestParam Long clienteId
     ) {
-        System.out.println("entra");
         return reporteService.generar(
                 clienteId,
                 LocalDate.parse(fechaInicio),

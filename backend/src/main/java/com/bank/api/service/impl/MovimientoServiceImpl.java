@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+
 import java.util.List;
 
 @Service
@@ -49,7 +49,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
         cuenta.setSaldoInicial(nuevoSaldo);
         cuentaRepository.save(cuenta);
-        System.out.println(LocalDateTime.now());
+        
         movimiento.setFecha(LocalDate.now());
         movimiento.setSaldo(nuevoSaldo);
         movimiento.setCuenta(cuenta);
