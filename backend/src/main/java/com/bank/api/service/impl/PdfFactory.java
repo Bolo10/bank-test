@@ -44,8 +44,8 @@ final class PdfFactory {
                     writeLine(cs, 50, y, "Cuenta: " + c.numeroCuenta() + " | Tipo: " + c.tipoCuenta());
                     y -= 13;
                     writeLine(cs, 70, y, "Saldo: " + c.saldoActual()
-                            + " | Debitos: " + c.totalDebitos()
-                            + " | Creditos: " + c.totalCreditos());
+                            + " | Retiros: " + c.totalDebitos()
+                            + " | Depositos: " + c.totalCreditos());
                     y -= 18;
 
                     if (y < 80) break; //sin paginacion por ahora

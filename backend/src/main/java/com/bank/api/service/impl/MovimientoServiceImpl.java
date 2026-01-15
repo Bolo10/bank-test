@@ -36,7 +36,7 @@ public class MovimientoServiceImpl implements MovimientoService {
         BigDecimal saldoActual = cuenta.getSaldoInicial();
         BigDecimal valor = movimiento.getValor();
 
-        if (movimiento.getTipoMovimiento() == TipoMovimiento.DEBITO) {
+        if (movimiento.getTipoMovimiento() == TipoMovimiento.RETIRO) {
 
             if (saldoActual.compareTo(BigDecimal.ZERO) <= 0 || saldoActual.add(valor).compareTo(BigDecimal.ZERO) < 0) {
                 throw new SaldoNoDisponibleException();
@@ -63,7 +63,7 @@ public class MovimientoServiceImpl implements MovimientoService {
         LocalDate fin = hoy;
         
         BigDecimal totalHoy = movimientoRepository
-                .sumValorByCuentaAndTipoAndRango(cuentaId, TipoMovimiento.DEBITO, inicio, fin)
+                .sumValorByCuentaAndTipoAndRango(cuentaId, TipoMovimiento.RETIRO, inicio, fin)
                 .abs(); // porque son negativos
 
         BigDecimal intento = valor.abs();

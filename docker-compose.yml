@@ -11,7 +11,10 @@ services:
     ports:
       - '5433:5432'
     volumes:
+      # Comentar pg data si se va a usar BaseDatos.sql
       - pgdata:/var/lib/postgresql/data
+      #  para inicializar la BaseDatos.sql 
+      #- ./db/BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U bankuser -d bankdb']
       interval: 5s

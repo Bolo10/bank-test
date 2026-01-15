@@ -56,13 +56,13 @@ public class ReporteServiceImpl implements ReporteService {
             List<Movimiento> movs = movsPorCuenta.getOrDefault(c.getId(), List.of());
 
             BigDecimal totalCreditos = movs.stream()
-                    .filter(m -> m.getTipoMovimiento() == TipoMovimiento.CREDITO)
+                    .filter(m -> m.getTipoMovimiento() == TipoMovimiento.DEPOSITO)
                     .map(Movimiento::getValor)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
 
             // si tus débitos son negativos, totalDebitos será negativo. Lo pasamos a positivo:
             BigDecimal totalDebitos = movs.stream()
-                    .filter(m -> m.getTipoMovimiento() == TipoMovimiento.DEBITO)
+                    .filter(m -> m.getTipoMovimiento() == TipoMovimiento.RETIRO)
                     .map(Movimiento::getValor)
                     .reduce(BigDecimal.ZERO, BigDecimal::add)
                     .abs();

@@ -26,7 +26,7 @@ public interface MovimientoRepository extends JpaRepository<Movimiento, Long> {
     List<Movimiento> findByClienteAndRangoFechas(Long clienteId, LocalDate inicio, LocalDate fin);
 
     // Suma de débitos en un rango (para cupo diario)
-    // Si guardas DEBITO como valor negativo, esta suma será negativa.
+    // Si guardas RETIRO como valor negativo, esta suma será negativa.
     // En el service: totalRetiro = sum == null ? 0 : sum.negate()
     // no olvidar que coalesce para evitar null
     @Query("""

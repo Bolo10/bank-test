@@ -49,7 +49,7 @@ export class MovimientoFormPageComponent implements OnInit {
 
   signedValor(): number {
     const v = Math.abs(Number(this.model.valor ?? 0));
-    return this.model.tipoMovimiento === 'DEBITO' ? -v : v;
+    return this.model.tipoMovimiento === 'RETIRO' ? -v : v;
   }
 
   onSubmit(f: NgForm): void {

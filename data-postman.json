@@ -1,0 +1,47 @@
+[
+  {
+    "clienteNombre": "Jose Lema",
+    "clienteDireccion": "Otavalo sn y principal",
+    "clienteTelefono": "098254785",
+    "clienteEdad": 30,
+    "clinteGenero": "Masculino",
+    "clienteIdentificacion": "1102547811",
+
+    "numeroCuenta": "478758",
+    "tipoCuenta": "AHORROS",
+    "saldoInicial": 2000,
+
+    "tipoMovimiento": "RETIRO",
+    "valorMovimiento": -575
+  },
+  {
+    "clienteNombre": "Marianela Montalvo",
+    "clienteDireccion": "Amazonas y NNUU",
+    "clienteTelefono": "098254786",
+    "clienteEdad": 25,
+    "clinteGenero": "Femenino",
+    "clienteIdentificacion": "1102547822",
+
+    "numeroCuenta": "225487",
+    "tipoCuenta": "CORRIENTE",
+    "saldoInicial": 1000,
+
+    "tipoMovimiento": "DEPOSITO",
+    "valorMovimiento": 600
+  },
+  {
+    "clienteNombre": "Juan Osorio",
+    "clienteDireccion": "13 junio y Equinoccial",
+    "clienteTelefono": "098874587",
+    "clienteEdad": 34,
+    "clinteGenero": "Masculino",
+    "clienteIdentificacion": "1102547833",
+
+    "numeroCuenta": "495878",
+    "tipoCuenta": "AHORROS",
+    "saldoInicial": 0,
+
+    "tipoMovimiento": "DEPOSITO",
+    "valorMovimiento": 150
+  }
+]

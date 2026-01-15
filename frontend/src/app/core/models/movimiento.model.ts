@@ -1,6 +1,6 @@
 import { Cuenta } from './cuenta.model';
 
-export type TipoMovimiento = 'DEBITO' | 'CREDITO';
+export type TipoMovimiento = 'RETIRO' | 'DEPOSITO';
 
 export interface Movimiento {
   id: number;
