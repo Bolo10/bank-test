@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ClienteService } from '../../core/api/cliente.service';
+import { ClienteService } from '../../core/api/services/cliente.service';
 import {
   ReporteService,
   ReporteResponse,
-} from '../../core/api/reportes.service';
+} from '../../core/api/services/reportes.service';
 import { Cliente } from '../../core/models/cliente.model';
 import { DateRangeComponent } from '../../shared/components/date-range/date-range.component';
 

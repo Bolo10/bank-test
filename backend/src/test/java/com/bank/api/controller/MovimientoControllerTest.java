@@ -32,8 +32,8 @@ class MovimientoControllerTest {
         String body = """
         {
           "cuenta": { "id": 1 },
-          "tipoMovimiento": "RETIRO",
-          "valor": -100
+          "tipoMovimiento": "DEPOSITO",
+          "valor": 100
         }
         """;
 

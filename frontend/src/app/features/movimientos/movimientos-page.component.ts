@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { MovimientoService } from '../../core/api/movimiento.service';
+import { MovimientoService } from '../../core/api/services/movimiento.service';
 import { Movimiento } from '../../core/models/movimiento.model';
 import { Cuenta } from '../../core/models/cuenta.model';
 import { Cliente } from '../../core/models/cliente.model';
-import { ClienteService } from '../../core/api/cliente.service';
+import { ClienteService } from '../../core/api/services/cliente.service';
 import { DateRangeComponent } from '../../shared/components/date-range/date-range.component';
 
 @Component({

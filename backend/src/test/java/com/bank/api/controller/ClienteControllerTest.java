@@ -56,16 +56,16 @@ class ClienteControllerTest {
                 .andExpect(jsonPath("$.clientId").value("CL-000001"));
     }
 
-    //@Test
-    //void shouldListClientes() throws Exception {
-    //    Cliente c1 = new Cliente(); c1.setId(1L); c1.setClientId("CL-000001");
-    //    Cliente c2 = new Cliente(); c2.setId(2L); c2.setClientId("CL-000002");
-//
-    //    when(clienteService.list(null)).thenReturn(List.of(c1, c2));
-//
-    //    mockMvc.perform(get("/api/clientes"))
-    //            .andExpect(status().isOk())
-    //            .andExpect(jsonPath("$[0].id").value(1))
-    //            .andExpect(jsonPath("$[1].id").value(2));
-    //}
+    @Test
+    void shouldListClientes() throws Exception {
+        Cliente c1 = new Cliente(); c1.setId(1L); c1.setClientId("CL-000001");
+        Cliente c2 = new Cliente(); c2.setId(2L); c2.setClientId("CL-000002");
+
+        when(clienteService.list(null)).thenReturn(List.of(c1, c2));
+
+        mockMvc.perform(get("/clientes"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[1].id").value(2));
+    }
 }

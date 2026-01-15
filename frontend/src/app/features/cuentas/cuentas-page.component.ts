@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CuentaService } from '../../core/api/cuenta.service';
+import { CuentaService } from '../../core/api/services/cuenta.service';
 import { Cuenta } from '../../core/models/cuenta.model';
 
 @Component({

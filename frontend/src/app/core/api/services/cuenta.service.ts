@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Cuenta, CuentaCreateDto, CuentaUpdateDto } from '../models/cuenta.model';
+import { Cuenta, CuentaCreateDto, CuentaUpdateDto } from '../../models/cuenta.model';
 
 @Injectable({ providedIn: 'root' })
 export class CuentaService {

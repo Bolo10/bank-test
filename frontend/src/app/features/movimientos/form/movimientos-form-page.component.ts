@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { MovimientoService } from '../../../core/api/movimiento.service';
-import { CuentaService } from '../../../core/api/cuenta.service';
+import { MovimientoService } from '../../../core/api/services/movimiento.service';
+import { CuentaService } from '../../../core/api/services/cuenta.service';
 import { Cuenta } from '../../../core/models/cuenta.model';
 import { TipoMovimiento } from '../../../core/models/movimiento.model';
 

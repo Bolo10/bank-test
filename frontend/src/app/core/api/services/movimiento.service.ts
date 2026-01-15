@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Movimiento, MovimientoCreateDto } from '../models/movimiento.model';
+import { Movimiento, MovimientoCreateDto } from '../../models/movimiento.model';
 
 @Injectable({ providedIn: 'root' })
 export class MovimientoService {

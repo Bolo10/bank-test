@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ClienteService } from '../../../core/api/cliente.service';
+import { ClienteService } from '../../../core/api/services/cliente.service';
 import {
   Cliente,
   ClienteCreateDto,

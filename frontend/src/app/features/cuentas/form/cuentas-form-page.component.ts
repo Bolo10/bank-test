@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CuentaService } from '../../../core/api/cuenta.service';
-import { ClienteService } from '../../../core/api/cliente.service';
+import { CuentaService } from '../../../core/api/services/cuenta.service';
+import { ClienteService } from '../../../core/api/services/cliente.service';
 import { Cliente } from '../../../core/models/cliente.model';
 import { TipoCuenta } from '../../../core/models/cuenta.model';
 
