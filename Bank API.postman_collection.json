@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "44c6a65a-e124-4629-8866-5dc9ed42b83c",
 		"name": "Bank API",
+		"description": "I create a postman-data.json to create use cases  \nthis is an example:  \n\n``` json\n{\n    \"clienteNombre\": \"Jose Lema\",\n    \"clienteDireccion\": \"Otavalo sn y principal\",\n    \"clienteTelefono\": \"098254785\",\n    \"clienteEdad\": 30,\n    \"clinteGenero\": \"Masculino\",\n    \"clienteIdentificacion\": \"1102547811\",\n\n    \"numeroCuenta\": \"478758\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"saldoInicial\": 2000,\n\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valorMovimiento\": -575,\n\n    \"numeroCuenta2\": \"585545\",\n    \"tipoCuenta2\": \"CORRIENTE\",\n    \"saldoInicial2\": 1000\n  },\n\n ```\n\n`      For run and load data with postman, check only the POST request      For run GET requests, check only the GET requests`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "10956947"
 	},
