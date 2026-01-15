@@ -12,7 +12,11 @@
     "saldoInicial": 2000,
 
     "tipoMovimiento": "RETIRO",
-    "valorMovimiento": -575
+    "valorMovimiento": -575,
+
+    "numeroCuenta2": "585545",
+    "tipoCuenta2": "CORRIENTE",
+    "saldoInicial2": 1000
   },
   {
     "clienteNombre": "Marianela Montalvo",
@@ -24,10 +28,17 @@
 
     "numeroCuenta": "225487",
     "tipoCuenta": "CORRIENTE",
-    "saldoInicial": 1000,
+    "saldoInicial": 100,
 
     "tipoMovimiento": "DEPOSITO",
-    "valorMovimiento": 600
+    "valorMovimiento": 600,
+
+    "numeroCuenta2": "496825",
+    "tipoCuenta2": "AHORROS",
+    "saldoInicial2": 540,
+
+    "tipoMovimiento2": "RETIRO",
+    "valorMovimiento2": -540
   },
   {
     "clienteNombre": "Juan Osorio",

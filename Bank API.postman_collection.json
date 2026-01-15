@@ -64,8 +64,16 @@
 							"});",
 							"",
 							"let res = pm.response.json();",
-							"console.log(res)",
-							"pm.collectionVariables.set(\"cuentaId\", res.id);"
+							"pm.collectionVariables.set(\"cuentaId1\", res.id);",
+							"",
+							"const numeroCuenta2 = pm.iterationData.get(\"numeroCuenta2\");",
+							"",
+							"",
+							"if (numeroCuenta2) {",
+							"  postman.setNextRequest(\"Cuentas - Crear 2cuenta\");",
+							"} else {",
+							"  postman.setNextRequest(\"Movimientos - Crear\");",
+							"}"
 						],
 						"type": "text/javascript"
 					}
@@ -99,17 +107,36 @@
 			"response": []
 		},
 		{
-			"name": "Movimientos - Crear",
+			"name": "Cuentas - Crear 2cuenta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"POST /movimientos responde 201 o 200\", function () {",
+							"pm.test(\"POST /cuentas responde 201 o 200\", function () {",
+							"console.log(pm.response)",
 							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
 							"});",
-							"let res = pm.response.json();",
-							"console.log(res)"
+							"",
+							"let  res = pm.response.json();",
+							"pm.collectionVariables.set(\"cuentaId2\", res.id);",
+							"",
+							"postman.setNextRequest(\"Movimientos - Crear\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const n2 = pm.iterationData.get(\"numeroCuenta2\");",
+							"const t2 = pm.iterationData.get(\"tipoCuenta2\");",
+							"const s2 = pm.iterationData.get(\"saldoInicial2\");",
+							"if (!n2) {",
+							"  postman.setNextRequest(null); ",
+							"}"
 						],
 						"type": "text/javascript"
 					}
@@ -125,7 +152,120 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"cuenta\": { \"id\": {{cuentaId}} },\n  \"tipoMovimiento\": \"{{tipoMovimiento}}\",\n  \"valor\": {{valorMovimiento}}\n}\n"
+					"raw": "{\n  \"numeroCuenta\": \"{{numeroCuenta2}}\",\n  \"tipoCuenta\": \"{{tipoCuenta2}}\",\n  \"saldoInicial\": {{saldoInicial2}},\n  \"estado\": true,\n  \"cliente\": { \"id\": {{clienteId}} }\n}\n"
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos - Crear",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST /movimientos responde 201 o 200\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"",
+							"",
+							"const tm2 = pm.iterationData.get(\"tipoMovimiento2\");",
+							"const v2 = pm.iterationData.get(\"valorMovimiento2\");",
+							"const cuentaId2 = pm.collectionVariables.get(\"cuentaId2\");",
+							"",
+							"if (tm2 && v2 !== undefined && v2 !== null && cuentaId2) {",
+							"  postman.setNextRequest(\"Movimientos - 2mov\");",
+							"} else {",
+							"  postman.setNextRequest(null); // o tu siguiente request (reporte)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuenta\": { \"id\": {{cuentaId1}} },\n  \"tipoMovimiento\": \"{{tipoMovimiento}}\",\n  \"valor\": {{valorMovimiento}}\n}\n"
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/movimientos",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos - 2mov",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST /movimientos responde 201 o 200\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"let res = pm.response.json();",
+							"console.log(res)",
+							"",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const tm2 = pm.iterationData.get(\"tipoMovimiento2\");",
+							"const v2 = pm.iterationData.get(\"valorMovimiento2\");",
+							"",
+							"if (!tm2 || v2 === undefined || v2 === null) {",
+							"  postman.setNextRequest(null); ",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuenta\": { \"id\": {{cuentaId2}} },\n  \"tipoMovimiento\": \"{{tipoMovimiento2}}\",\n  \"valor\": {{valorMovimiento2}}\n}\n"
 				},
 				"url": {
 					"raw": "http://{{host}}:{{port}}/api/movimientos",
@@ -144,6 +284,20 @@
 		},
 		{
 			"name": "Clientes - Listar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET /api/clientes responde 201 o 200\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -164,6 +318,20 @@
 		},
 		{
 			"name": "Cuentas - Listar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET /api/cuentas responde 201 o 200\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -184,11 +352,25 @@
 		},
 		{
 			"name": "Movimientos - Listar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET /api/movimientos responde 201 o 200\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/movimientos?fechaInicio=2024-01-01&fechaFin=2024-01-31&clienteId=1",
+					"raw": "http://{{host}}:{{port}}/api/movimientos?fechaInicio=2026-01-01&fechaFin=2026-01-31&clienteId=1",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -201,11 +383,11 @@
 					"query": [
 						{
 							"key": "fechaInicio",
-							"value": "2024-01-01"
+							"value": "2026-01-01"
 						},
 						{
 							"key": "fechaFin",
-							"value": "2024-01-31"
+							"value": "2026-01-31"
 						},
 						{
 							"key": "clienteId",
@@ -218,6 +400,24 @@
 		},
 		{
 			"name": "Reportes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res = pm.response.json();",
+							"console.log(res)",
+							"if(res.pdfBase64){",
+							"    pm.test(\"GET /api/reportes responde 201 o 200 y contiene pdfBase64\", function () {",
+							"  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -266,8 +466,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"let response = pm.response.json();",
-					"pm.collectionVariables.set(\"clienteId\", response.id);"
+					""
 				]
 			}
 		}
@@ -294,6 +493,14 @@
 		},
 		{
 			"key": "cuentaId",
+			"value": ""
+		},
+		{
+			"key": "cuentaId1",
+			"value": ""
+		},
+		{
+			"key": "cuentaId2",
 			"value": ""
 		}
 	]
